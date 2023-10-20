@@ -10,22 +10,17 @@ from datetime import timedelta
 from dateutil.relativedelta import relativedelta
 import requests, json, math, time, jwt, base64
 
-cloud_id = 'lpa_bimbeats:dXMtd2VzdC0yLmF3cy5mb3VuZC5pbyQzM2RiMTFkZTI2NzA0MjVmYTA0ZWJhYTU4OTY4NWFkMyQzNDFkNWI3ODFkZjM0ZTg1OWZkZTA1OTQzYmM4NWM1ZA=='
-api_key_id = 'AxQnmocBF3N7DMc-nPf1'
-api_key = 'mJXhw019TT2SAbWvgpzwwQ'
+cloud_id = '<CLOUDID>'
+api_key_id = '<APIKEYID>'
+api_key = '<APIKEY>'
 es = Elasticsearch(
     cloud_id=cloud_id,
     api_key=(api_key_id, api_key),
 )
 
-#es = Elasticsearch(
-#    cloud_id=cloud_id,
-#    http_auth=('2366930620','eab3yac8dtc-WKA7kad')
-#)
 
-
-adobeOrgID = 'A2AE196C5C7874E00A495E82@AdobeOrg'
-adobeClientID = '1298434b2be941218b2db69fac65222c'
+adobeOrgID = '<AdobeOrgID>'
+adobeClientID = '<AdobeClientID>'
 
 def retrieveToken(validMinutes):
     now = datetime.now()
@@ -33,41 +28,19 @@ def retrieveToken(validMinutes):
     now = now.timestamp()
     now = math.ceil(now)
 
-    adobePrivateKey = """-----BEGIN PRIVATE KEY-----
-MIIEuAIBADANBgkqhkiG9w0BAQEFAASCBKIwggSeAgEAAoIBAQC7O68lPzzQE3NxBWTVGdjF8HfB
-G5pKiDfB7RG9yBtY8LojU62BVvtm7+uBAYDRQ+VEBxfInRCSjR8oBrufr+TkLEahsB6Ui5TIm3L9
-QhGFZZPL3wGTU9k7A5GBIIW9tYJhotu93llwIlRbJt465wdqymyOSAKsx/ApctpJfjwxYbLhPz55
-cIs6pPhDSrmfUwtDtu/2Tiyc9SehL4FjXHGc7hPoeBnaLsH2nuPJqXVjc3ph4BVvkHKYSZJNbfXb
-jGH6020yaf78hZn+GgZ/PkLcta/8u7cFToQ8Jvsq+F3K0ImGDoJJ77P1tGSysJfaZEruYjmAEFZD
-XdYy3ZlZjLdZAgMBAAECgf9/cOCGOcTq3FJ3W3SGmFE0abkZd/BNSuqo1PR+ePYkU7Ze1VYD83Cr
-YCKsbJmB1vT2mN1Xb5EYL3ZFiE+tIcxqgriQ1Y/7DAb5hNWADLhgVAOFgQVRgoEZ6hPgEIL33dQh
-IPjxA6dc7AD/CjW5YgdqaN36+ojXkj+l9scdvw65jNmBX9/n7sXr3KpbSixwIc/oGOoCtVB1aKgB
-mEKsWt1+9aoAzhRKAt1VkIwUylOQ2PchyiWi1Mj38fn5BWq/WWd3PYLFr9shSe8MxNYEIZau3Nrw
-vRdXtDfJOq+xky7xCD+DMM50ncyyffn4D8b+jP/PGMLmXEH5x6Mjfj0P0dUCgYEAvmTV0GuAngts
-Bw9GGopAYhSyWHVKKeJkq5e6ja4Kvzo0klj5GZgPuCvUptwUlo82xA/KmFmZM6zefKQJOqwnE5he
-/nQ9MbuNBEYAv35i1BeIMzvnUoHQnkAELFAbjRXUWOv+E6ZXupBat9tkYRpg2ATy+zrwlHTnTko/
-tysErI0CgYEA+8AH6FERFir72EYUvN2H011t5k/8jg2cb6yIBsfhngldFOXas7lbaj+xEb20l8lU
-ikawzxmrs0bm8Q2qrZFwGiJVnV7Bu4aLCgTueOcx9Xh8ZedBzFY/vNz+fLITuM8c95tBjCy0nXr1
-hH8XsnGqkxJuCcC4r1DLk2oT9qtS8P0Cf1BSOeGzeI80Ql64EtsfeAnosVSgJqmE2POLDyi2Q9Jo
-u8UBxBUIEZmg5BWAwy7BPFl6T/31zqv+Qd5TVZFrDxE1Nt4iK67PcK5c2fPvXcIcK1lx7CTinyAj
-4Z7QLM9YZj0dUhL4Ggqa26q046QTfMelTtyuANCggPSGXlrnyxECgYBrza+VLCHE/GMcGeaHedXQ
-DRIird3YdrumlpspTC6xHhFeAY/Fpnoe5WdN0Y6j8PLiw6KzDKsZ+iKq1s9fxAfdKRbAbPNI+jRP
-9gyoeVhLZWzftkfW2Jgyp+/SNe98FDSzUyiefgZZ6W15b3MWVtZUZG/6fSyY5mBGoAYsevDpgQKB
-gF5sIBWJMytNkm/Jpz1gyI5vy2uYN1HuupZBgAPIRE1PpNAe9idLfKlktSMEh1eWLOcfHQ6azvP1
-bmG1rr+Q8ftTbhC53jI0013HRaszGLyaLldsW7SP4ePzNZjbJAh5n+oW4UeWbzDyB7l5+8Zu1me7
-osGNQFgTEQCXGHrZJux3
------END PRIVATE KEY-----"""
+    adobePrivateKey = """<PRIVATEKEY>"""
+
 
     jwtPayload = {
         "exp":now,
-        "iss":"A2AE196C5C7874E00A495E82@AdobeOrg",
-        "sub":"E754382E644065130A495EA3@techacct.adobe.com",
+        "iss":"<ISSID>",
+        "sub":"<SUBID>",
         "https://ims-na1.adobelogin.com/s/ent_user_sdk": True,
-        "aud":"https://ims-na1.adobelogin.com/c/1298434b2be941218b2db69fac65222c"
+        "aud":"https://ims-na1.adobelogin.com/c/<ADOBECLIENTID>"
     }
 
     encodedJWT = jwt.encode(jwtPayload,adobePrivateKey,algorithm='RS256')
-    adobeClientSecret = 'p8e-mBN25uTNVDZ_yhnK89Wt2LCFb5viTFuA'
+    adobeClientSecret = '<ADOBECLIENTSECRET>'
     url = 'https://ims-na1.adobelogin.com/ims/exchange/jwt'
 
     parameters = {
